@@ -25,7 +25,7 @@ services:
     ports:
       - "5678:5678"
     environment:
-      # --- Database ---
+      # Database
       DB_TYPE: postgresdb
       DB_POSTGRESDB_HOST: postgres
       DB_POSTGRESDB_PORT: 5432
@@ -33,22 +33,25 @@ services:
       DB_POSTGRESDB_USER: ${POSTGRES_USER}
       DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}
 
-      # --- General ---
+      # General
       GENERIC_TIMEZONE: ${GENERIC_TIMEZONE}
       TZ: ${GENERIC_TIMEZONE}
       N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY}
-      N8N_BLOCK_ENV_ACCESS_IN_NODE: "false"
+      N8N_BLOCK_ENV_ACCESS_IN_NODE: false
+      WEBHOOK_URL: ${WEBHOOK_URL}
+      NODE_FUNCTION_ALLOW_BUILTIN: "crypto"
 
-      # --- Basic Auth (optional, ป้องกันคนอื่นเข้า UI) ---
+
+      # Basic Auth
       N8N_BASIC_AUTH_ACTIVE: ${N8N_BASIC_AUTH_ACTIVE}
       N8N_BASIC_AUTH_USER: ${N8N_BASIC_AUTH_USER}
       N8N_BASIC_AUTH_PASSWORD: ${N8N_BASIC_AUTH_PASSWORD}
 
-      # --- LINE Messaging API (ใช้ใน Code/HTTP node ผ่าน $env) ---
+      # LINE Messaging API
       LINE_CHANNEL_SECRET: ${LINE_CHANNEL_SECRET}
       LINE_CHANNEL_ACCESS_TOKEN: ${LINE_CHANNEL_ACCESS_TOKEN}
 
-      # --- DashScope (Qwen) ---
+      # DashScope (Qwen)
       DASHSCOPE_API_KEY: ${DASHSCOPE_API_KEY}
     volumes:
       - n8n_data:/home/node/.n8n
